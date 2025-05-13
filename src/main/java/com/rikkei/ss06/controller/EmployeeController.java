@@ -22,7 +22,8 @@ public class EmployeeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action.equals("findAll")) {
+
+        if (action == null || action.equals("findAll")) {
             findAllEmployee(request, response);
         } else if (action.equals("initUpdate")) {
             int employeeId = Integer.parseInt(request.getParameter("employeeId"));
