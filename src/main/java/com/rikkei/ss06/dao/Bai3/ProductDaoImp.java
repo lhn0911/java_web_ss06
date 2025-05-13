@@ -37,6 +37,26 @@ public class ProductDaoImp implements ProductDao{
 
     @Override
     public Product findById(int id) {
-        return null;
+        Connection conn = null;
+        CallableStatement callSt = null;
+        Product product = null;
+        try {
+            conn = ConnectionDB.openConnection();
+            callSt = conn.prepareCall("{call find_product_by_id(?)}");
+            callSt.setInt(1, id);
+            ResultSet rs = callSt.executeQuery();
+            if (rs.next()) {
+                product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setImageUrl(rs.getString("imageUrl"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(conn, callSt);
+        }
+        return product;
     }
 }

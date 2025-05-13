@@ -8,6 +8,10 @@
 <h1><%= "Bai tap ss06" %>
 </h1>
 <br/>
-<a href="BookController">Bai1</a>
+<a href="BookController">Bai12</a><br>
+<a href="ProductController">Bai3</a><br>
+<a href="EmployeeController">Bai4</a><br>
+<a href="GameController">Bai5</a><br>
+
 </body>
 </html>
